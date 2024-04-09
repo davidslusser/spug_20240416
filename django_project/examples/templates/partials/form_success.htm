@@ -1,1 +1,4 @@
-<div class="h4">Successfully added data: <span class="text-primary">{{ object.data }}</span> at <span class="text-secondary">{{ object.created_at }}</span></div>
+<div class="h4">Successfully added data: <span class="text-primary">{{ object.data }}</span> at <span class="text-secondary">{{ object.created_at.isoformat }}</span></div>
+
+{% comment %} add oob swap {% endcomment %}
+<span id="record_count" hx-swap-oob="true">{{ count }}</span>

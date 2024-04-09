@@ -33,6 +33,20 @@ def ExampleThree(request):
     return render(request, "example_three.html", {"form": form})
 
 
+def ExampleFour(request):
+    if request.method == "POST":
+        form = MyForm(request.POST)
+        if form.is_valid():
+            object = form.save()
+            context = {"object": object, "count": form.Meta.model.objects.count()}
+            return render(request, "partials/form_success.htm", context)
+    else:
+        print("TEST: in submit_form()")
+        form = MyForm()
+        context = {"form": form, "count": form.Meta.model.objects.count()}
+    return render(request, "example_four.html", context)
+
+
 def get_time(request: HttpRequest) -> HttpResponse:
     print("TEST: in get_time()")
     context = {"timestamp": timezone.now().isoformat()}
