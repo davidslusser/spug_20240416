@@ -47,14 +47,14 @@ def ExampleFour(request):
     return render(request, "example_four.html", context)
 
 
-def get_time(request: HttpRequest) -> HttpResponse:
-    print("TEST: in get_time()")
-    context = {"timestamp": timezone.now().isoformat()}
-    return render(request, "partials/get_time.htm", context=context)
-
-
 def get_joke(request: HttpRequest) -> HttpResponse:
     print("TEST: in get_joke()")
     resp = httpx.get("https://api.chucknorris.io/jokes/random")
     text_content = resp.json()["value"]
     return HttpResponse(text_content, content_type="text/plain")
+
+
+def get_time(request: HttpRequest) -> HttpResponse:
+    print("TEST: in get_time()")
+    context = {"timestamp": timezone.now().isoformat()}
+    return render(request, "partials/get_time.htm", context=context)
